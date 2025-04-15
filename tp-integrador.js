@@ -169,13 +169,39 @@ function agregarLibro(id, titulo, autor, anio, genero) {
   }
 
   if (resultados.length === 0) {
-    console.log("❌ No se encontraron libros con ese criterio.");
+    console.log(" No se encontraron libros con ese criterio.");
   } else {
-    console.log(`✅ Libros encontrados por ${criterio} "${valor}":`);
+    console.log(` Libros encontrados por ${criterio} "${valor}":`);
     resultados.forEach(libro => {
       console.log(`- ${libro.titulo} (${libro.autor}, ${libro.anio})`);
     });
   }
 }
 
+// Desarrollar una función ordenarLibros(criterio) 
+//que ordene los libros por título o año utilizando el algoritmo de ordenamiento burbuja (bubble sort) y luego muestre los libros ordenados en la consola.
+
+
+function ordenarLibros(criterio) {
+    for (let i = 0; i < libros.length - 1; i++) {
+      for (let j = 0; j < libros.length - i - 1; j++) {
+        let actual = libros[j];
+        let siguiente = libros[j + 1];
+  
+        if (
+          (criterio === "titulo" && actual.titulo.toLowerCase() > siguiente.titulo.toLowerCase()) ||
+          (criterio === "anio" && actual.anio > siguiente.anio)
+        ) {
+          let temporal = libros[j];
+          libros[j] = libros[j + 1];
+          libros[j + 1] = temporal;
+        }
+      }
+    }
+  
+    console.log(`Libros ordenados por ${criterio}:`);
+    libros.forEach(libro => {
+      console.log(`- ${libro.titulo} (${libro.autor}, ${libro.anio})`);
+    });
+  }
   
